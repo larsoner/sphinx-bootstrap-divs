@@ -1,3 +1,5 @@
+:orphan:
+
 Collapse directive for sphinx-bootstrap-theme
 =============================================
 

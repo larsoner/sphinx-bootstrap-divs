@@ -1,4 +1,4 @@
-all: clean build
+all: clean build check-manifest check-readme
 
 build:
 	sphinx-build . build/html
@@ -12,3 +12,6 @@ show: view
 
 check-manifest:
 	check-manifest --ignore .circleci*,build,conf.py
+
+check-readme:
+	python setup.py check --restructuredtext --strict

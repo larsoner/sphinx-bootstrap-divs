@@ -11,7 +11,7 @@ jobs:
         - run:
             name: Get Python running
             command: |
-              pip install --user --upgrade sphinx sphinx-boostrap-theme
+              pip install --user --upgrade sphinx sphinx-bootstrap-theme
         - save_cache:
             key: pip-cache
             paths:
@@ -32,3 +32,10 @@ jobs:
             root: build
             paths:
               - html
+
+workflows:
+  version: 2
+
+  default:
+    jobs:
+      - build_docs

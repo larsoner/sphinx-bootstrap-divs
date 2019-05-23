@@ -12,8 +12,7 @@ this_dir = op.dirname(__file__)
 
 
 HEADER = """
-<div class="panel-group">
-<div class="panel panel-default">
+<div class="panel panel-{class_}">
 <div class="panel-heading"><h4 class="panel-title">
 <a data-toggle="collapse" href="#collapse_{id_}">{title}</a>
 </h4></div>
@@ -26,8 +25,8 @@ FOOTER = "</div></div></div>"
 class CollapseNode(nodes.General, nodes.Element):
     """Our class."""
 
-    def __init__(self, title, id_, extra):
-        self.options = dict(title=title, id_=id_, extra=extra)
+    def __init__(self, title, id_, extra, class_):
+        self.options = dict(title=title, id_=id_, extra=extra, class_=class_)
         super().__init__()
 
     @staticmethod
@@ -41,12 +40,23 @@ class CollapseNode(nodes.General, nodes.Element):
         self.body.append(FOOTER)
 
 
+KNOWN_CLASSES = ('default', 'primary', 'success', 'info', 'warning', 'danger')
+
+
+def _check_class(class_):
+    if class_ not in KNOWN_CLASSES:
+        raise ValueError(':class: option %r must be one of %s'
+                         % (class_, KNOWN_CLASSES))
+    return class_
+
+
 class CollapseDirective(SphinxDirective):
     """Collapse directive."""
 
     final_argument_whitespace = True
-    optional_arguments = 1
-    option_spec = {'open': flag}
+    optional_arguments = 2
+    option_spec = {'open': flag,
+                   'class': _check_class}
     has_content = True
 
     def run(self):
@@ -55,8 +65,10 @@ class CollapseDirective(SphinxDirective):
         self.assert_has_content()
         extra = _(' in' if 'open' in self.options else '')
         title = _(self.arguments[0])
+        class_ = self.options.get('class', 'default')
+        print(class_)
         id_ = env.new_serialno('Collapse')
-        collapse_node = CollapseNode(title, id_, extra)
+        collapse_node = CollapseNode(title, id_, extra, class_)
         self.add_name(collapse_node)
         self.state.nested_parse(
             self.content, self.content_offset, collapse_node)

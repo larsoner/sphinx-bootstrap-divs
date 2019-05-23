@@ -4,3 +4,5 @@ recursive-include sphinx_bootstrap_theme_collapse *.js
 recursive-include sphinx_bootstrap_theme_collapse *.css
 exclude conf.py
 exclude setup.py
+exclude Makefile
+exclude index.rst

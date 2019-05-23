@@ -30,5 +30,6 @@ Output
    But closes when you click on it.
 
 .. collapse:: Closed by default
+   :class: warning
 
    But opens when you click on it.
