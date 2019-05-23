@@ -1,4 +1,4 @@
-all: clean build check-manifest check-readme
+all: clean build
 
 build:
 	sphinx-build . build/html
