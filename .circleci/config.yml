@@ -1,0 +1,34 @@
+version: 2
+jobs:
+    build_docs:
+      docker:
+        - image: circleci/python:3.7-stretch
+      steps:
+        - checkout
+        - restore_cache:
+            keys:
+              - pip-cache
+        - run:
+            name: Get Python running
+            command: |
+              pip install --user --upgrade sphinx sphinx-boostrap-theme
+        - save_cache:
+            key: pip-cache
+            paths:
+              - ~/.cache/pip
+        - run:
+            name: install
+            command: |
+              python setup.py install --user
+              rm -Rf sphinx_bootstrap_theme_collapse
+        - run:
+            name: Build docs
+            command: |
+              make
+        - store_artifacts:
+            path: build/html/
+            destination: html
+        - persist_to_workspace:
+            root: build
+            paths:
+              - html
