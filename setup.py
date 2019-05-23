@@ -1,16 +1,16 @@
 from setuptools import setup, find_packages
 
+name = 'sphinx-bootstrap-divs'
 setup(
-    name='sphinx-bootstrap-theme-collapse',
+    name=name,
     version='1.0.0',
-    url='https://github.com/larsoner/sphinx-bootstrap-theme-collapse.git',
+    url='https://github.com/larsoner/%s.git' % (name,),
     author='Eric Larson',
     author_email='larson.eric.d@gmail.com',
-    description='Add a collapse directive for sphinx-bootstrap-theme',
+    description='Add div directives for sphinx-bootstrap-theme',
     packages=find_packages(),
     install_requires=['sphinx', 'sphinx-bootstrap-theme'],
     include_package_data=True,
     zip_safe=False,
-    package_data={
-        'sphinx-bootstrap-theme-collapse': ['collapse.js', 'collapse.css']},
+    package_data={name: ['bootstrap_divs.js', 'bootstrap_divs.css']},
 )

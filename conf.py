@@ -7,7 +7,7 @@ sys.path.append(os.path.abspath(os.path.join(curdir)))
 
 extensions = [
     'sphinx_bootstrap_theme',
-    'sphinx_bootstrap_theme_collapse',
+    'sphinx_bootstrap_divs',
 ]
 source_suffix = '.rst'
 master_doc = 'index'

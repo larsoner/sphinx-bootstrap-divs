@@ -1,12 +1,12 @@
-Collapse directive for sphinx-bootstrap-theme
-=============================================
+<div> helpers for sphinx-bootstrap-theme
+========================================
 
 Installation
 ------------
 
 .. code-block:: console
 
-    $ pip install sphinx-bootstrap-theme-collapse
+    $ pip install sphinx-bootstrap-divs
 
 Code
 ----
@@ -21,6 +21,10 @@ Code
 
        But opens when you click on it.
 
+    .. details:: Closed by default
+
+       But opens when you click on it.
+
 Output
 ------
 
@@ -31,5 +35,9 @@ Output
 
 .. collapse:: Closed by default
    :class: warning
+
+   But opens when you click on it.
+
+.. details:: Closed by default
 
    But opens when you click on it.

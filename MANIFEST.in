@@ -1,7 +1,7 @@
 include LICENSE
-recursive-include sphinx_bootstrap_theme_collapse *.py
-recursive-include sphinx_bootstrap_theme_collapse *.js
-recursive-include sphinx_bootstrap_theme_collapse *.css
+recursive-include sphinx_bootstrap_divs *.py
+recursive-include sphinx_bootstrap_divs *.js
+recursive-include sphinx_bootstrap_divs *.css
 exclude conf.py
 exclude setup.py
 exclude Makefile

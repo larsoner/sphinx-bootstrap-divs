@@ -1,14 +1,14 @@
 :orphan:
 
-Collapse directive for sphinx-bootstrap-theme
-=============================================
+<div> helpers for sphinx-bootstrap-theme
+========================================
 
 Installation
 ------------
 
 .. code-block:: console
 
-    $ pip install sphinx-bootstrap-theme-collapse
+    $ pip install sphinx-bootstrap-divs
 
 Code
 ----
@@ -20,5 +20,9 @@ Code
        But closes when you click on it.
 
     .. collapse:: Closed by default
+
+       But opens when you click on it.
+
+    .. details:: Closed by default
 
        But opens when you click on it.
