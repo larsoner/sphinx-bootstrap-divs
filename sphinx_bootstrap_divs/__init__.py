@@ -149,7 +149,7 @@ def setup(app):
 
 def copy_asset_files(app, exc):
     """Copy static assets."""
-    asset_files = ['collapse.css', 'collapse.js']
+    asset_files = ['bootstrap_divs.css', 'bootstrap_divs.js']
     if exc is None:  # build succeeded
         for path in asset_files:
             copy_asset(op.join(this_dir, path),
