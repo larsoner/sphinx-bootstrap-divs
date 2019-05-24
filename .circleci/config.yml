@@ -18,7 +18,7 @@ jobs:
         - run:
             name: Get Python running
             command: |
-              pip install --user --upgrade sphinx sphinx-bootstrap-theme
+              pip install --user --upgrade sphinx sphinx-bootstrap-theme sphinx-fontawesome
         - save_cache:
             key: pip-cache
             paths:
