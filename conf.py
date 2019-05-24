@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
+from datetime import date
 import os
 import sys
 
 curdir = os.path.dirname(__file__)
 sys.path.append(os.path.abspath(os.path.join(curdir)))
+
+import sphinx_bootstrap_divs  # noqa
 
 extensions = [
     'sphinx_bootstrap_theme',
@@ -15,8 +18,9 @@ nitpicky = True
 exclude_trees = ['build']
 html_theme = 'bootstrap'
 html_theme_options = {
-    'source_link_position': "nav",
-    'bootswatch_theme': "sandstone",
-    'bootstrap_version': "3",
-    'navbar_pagenav': False,
+    'bootswatch_theme': "lumen",
 }
+project = u'sphinx-bootstrap-divs'
+td = date.today()
+copyright = u'2019-%s, sphinx-bootstrap-div Developers' % (td.year,)
+version = release = sphinx_bootstrap_divs.__version__

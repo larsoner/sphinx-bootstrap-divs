@@ -18,6 +18,7 @@ Code
        But closes when you click on it.
 
     .. collapse:: Closed by default
+       :class: info
 
        But opens when you click on it.
 
@@ -34,7 +35,7 @@ Output
    But closes when you click on it.
 
 .. collapse:: Closed by default
-   :class: warning
+   :class: info
 
    But opens when you click on it.
 

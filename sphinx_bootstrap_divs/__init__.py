@@ -10,6 +10,8 @@ from sphinx.util.fileutil import copy_asset
 
 this_dir = op.dirname(__file__)
 
+__version__ = '0.1.0.dev0'
+
 
 ###############################################################################
 # Super classes
@@ -64,8 +66,9 @@ class CollapseNode(DivNode):
 class CollapseDirective(SphinxDirective):
     """Collapse directive."""
 
+    required_arguments = 1
+    optional_arguments = 0
     final_argument_whitespace = True
-    optional_arguments = 2
     option_spec = {'open': flag,
                    'class': CollapseNode._check_class}
     has_content = True
@@ -101,8 +104,9 @@ class DetailsNode(DivNode):
 class DetailsDirective(SphinxDirective):
     """Details directive."""
 
+    required_arguments = 1
+    optional_arguments = 0
     final_argument_whitespace = True
-    optional_arguments = 1
     option_spec = {'class': str}
     has_content = True
 
