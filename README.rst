@@ -1,5 +1,3 @@
-:orphan:
-
 <div> helpers for sphinx-bootstrap-theme
 ========================================
 
@@ -10,19 +8,24 @@ Installation
 
     $ pip install sphinx-bootstrap-divs
 
-Code
-----
-::
+Use
+---
 
-    .. collapse:: Open by default
-       :open:
+Look at the |file-text| RST source of this file.
 
-       But closes when you click on it.
+Behavior
+--------
 
-    .. collapse:: Closed by default
+.. collapse:: |folder-open-o| **Open** by default
+   :open:
 
-       But opens when you click on it.
+   But |folder-o| closes when you click on it.
 
-    .. details:: Closed by default
+.. collapse:: |folder-o| Closed by default
+   :class: info
 
-       But opens when you click on it.
+   But |folder-open-o| opens when you click on it.
+
+.. details:: |folder-o| Closed by default
+
+   But |folder-open-o| opens when you click on it.
