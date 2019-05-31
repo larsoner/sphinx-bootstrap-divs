@@ -2,7 +2,7 @@
 
 import os.path as op
 from docutils import nodes
-from docutils.parsers.rst.directives import flag, unchanged, class_option
+from docutils.parsers.rst.directives import flag, class_option
 from docutils.parsers.rst.roles import set_classes
 from docutils.statemachine import StringList
 
@@ -39,27 +39,31 @@ class DivNode(nodes.Body, nodes.Element):
 
     def depart_node(self, node):
         """Depart the node."""
-        self.body.append(node.FOOTER +
-                         '</{}>'.format(node.ELEMENT))
+        self.body.append('</{}>'.format(node.ELEMENT))
 
-    def _assemble(self, directive):
-        title_text = directive.arguments[0]
-        directive.add_name(self)
-        header = self.HEADER_PRETITLE.format(**self.options).split('\n')
-        directive.state.nested_parse(
-            StringList(header), directive.content_offset, self)
 
-        textnodes, messages = directive.state.inline_text(
-            title_text, directive.lineno)
-        self += textnodes
-        self += messages
+def _assemble(node, directive):
+    title_text = directive.arguments[0]
+    directive.add_name(node)
+    header = node.HEADER_PRETITLE.format(**node.options).split('\n')
+    directive.state.nested_parse(
+        StringList(header), directive.content_offset, node)
 
-        header = self.HEADER_POSTTITLE.format(**self.options).split('\n')
-        directive.state.nested_parse(
-            StringList(header), directive.content_offset, self)
+    textnodes, messages = directive.state.inline_text(
+        title_text, directive.lineno)
+    node += textnodes
+    node += messages
 
-        directive.state.nested_parse(
-            directive.content, directive.content_offset, self)
+    header = node.HEADER_POSTTITLE.format(**node.options).split('\n')
+    directive.state.nested_parse(
+        StringList(header), directive.content_offset, node)
+
+    directive.state.nested_parse(
+        directive.content, directive.content_offset, node)
+
+    footer = node.FOOTER.format(**node.options).split('\n')
+    directive.state.nested_parse(
+        StringList(footer), directive.content_offset, node)
 
 
 ###############################################################################
@@ -79,8 +83,7 @@ class CollapseNode(DivNode):
 
     </a></h4></div>
     <div id="collapse_{id_}" class="panel-collapse collapse{extra}">
-    <div class="panel-body">
-    """
+    <div class="panel-body">"""
     FOOTER = """.. raw:: html
 
     </div></div>"""
@@ -113,7 +116,7 @@ class CollapseDirective(SphinxDirective):
         class_ = {'class': self.options.get('class', 'default')}
         id_ = nodes.make_id(title_text)
         node = CollapseNode(title=title_text, id_=id_, extra=extra, **class_)
-        node._assemble(self)
+        _assemble(node, self)
         return [node]
 
 
@@ -145,12 +148,13 @@ class DetailsDirective(SphinxDirective):
     has_content = True
 
     def run(self):
+        """Parse."""
         set_classes(self.options)
         self.assert_has_content()
         title_text = _(self.arguments[0])
         class_ = {'class': self.options.get('class', '')}
         node = DetailsNode(title=title_text, **class_)
-        node._assemble(self)
+        _assemble(node, self)
         return [node]
 
 
